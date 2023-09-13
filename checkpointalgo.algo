@@ -1,32 +1,28 @@
 ALGORITHM AnalyseTexte
 VAR
-    lenghtcounter, wordcounter, vowelcounter : INTEGER ;
-    lenghtcounter, wordcounter, vowelcounter =: 0 ;
-    sentence, word, character : string ;
+   i, alphabetCounter,lenghtcounter, wordcounter, vowelcounter : INTEGER :=0 ;
+    sentence, : string ;
 BEGIN
+   REPEAT
     WRITE ("write a sentence that ends with . ");
-    READ (sentence);
-    FOR EACH (character) IN (sentence) ;
-    //if character = . exit loop
-        IF (character=".") THEN ;
-            EXIT FOR EACH ;
-        ELSE 
-            lenghtcounter =: lenghtcounter + 1 ;
-                // if character is not space
-                IF (character != " ") ;
-                word = CONCAT (word, character) ;
-                   // if word is not empty
-                    ELSE IF (word !="")
-                    wordcounter =: wordcounter + 1 ;
-                    word ="";
-                END_IF
-                // if there are vowels
-                IF (character = "a", "e", "i", "o", "u") ;
-                vowelcounter = vowelcounter + 1 :
-                END_IF
+    READ (sentence); 
+   UNTIL ( sentence[sentence.lenght-1] == ".")
+
+
+    FOR i from 0 to (sentence.lenght-1)  STEP step do ;
+        if ( sentence[i] = " ") OR (sentence[i] == ".") THEN
+          wordcounter ++ 
         END_IF
-    END FOR EACH
-    WRITE ("lenght of the sentence"), lenghtcounter ;
-    WRITE ("number of words in sentence"), wordcounter ;
-    WRITE ("number of vowels in the sentence"), vowelcounter ;
+        
+        if  ( UPERCASE (sentence[i]) in ( "A","E","I","O","U")) THEN            
+           vowelcounter ++
+        END_IF
+    END FOR 
+
+    lenghtcounter := sentence.lenght
+    alphabetCounter := lenghtcounter - wordcounter :
+    WRITE ("lenght of the sentence", lenghtcounter) ;
+    WRITE ("number of words in sentence", wordcounter) ;
+    WRITE ("number of vowels in the sentence", vowelcounter );
+    WRITE ("number of alphabet in the sentence", alphabetCounter );
 END
